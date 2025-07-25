@@ -40,8 +40,8 @@
                 <!-- More info Popup -->
                 <button onclick="showDialog('MoreDialog{{$index}}'); displayMore('{{$index}}');">More info</button>
                 <dialog id="MoreDialog{{$index}}" style="padding: 20px;">
-                    <p id="RelationPlace">Loading...</p>
-                    <p id="DatesPlace">Loading...</p>
+                    <p style="color: #194e26; font-size: 20px; font-weight: bold;">Relations:</p><p id="RelationPlace">Loading...</p>
+                    <p style="color: #194e26; font-size: 20px;font-weight: bold;">Concert dates:</p><p id="DatesPlace">Loading...</p>
                     <button onclick="closeDialog('MoreDialog{{$index}}')">Close</button>
                 </dialog>
             </div>

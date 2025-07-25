@@ -6,15 +6,15 @@ import (
 	"strings"
 )
 
-func RelationHandler(w http.ResponseWriter, r *http.Request) {
+func DatesHandler(w http.ResponseWriter, r *http.Request) {
 
-	id := strings.TrimPrefix(r.URL.Path, "/relation/")
+	id := strings.TrimPrefix(r.URL.Path, "/dates/")
 	if id == "" {
 		http.NotFound(w, r)
 		return
 	}
 
-	resp, err := http.Get("https://groupietrackers.herokuapp.com/api/relation/" + id)
+	resp, err := http.Get("https://groupietrackers.herokuapp.com/api/dates/" + id)
 	if err != nil || resp.StatusCode != 200 {
 		http.Error(w, "Failed to fetch data", http.StatusInternalServerError)
 		return

@@ -17,17 +17,34 @@ function displayLocations(id) {
 }
 
 function displayMore(id) {
+    // relations
+
     fetch("/relation/" + (Number(id) + 1))
-        .then(res => res.json())
+        .then(response => response.json())
         .then(data => {
             const content = document.getElementById("RelationPlace");
-            if (Object.keys(data.datesLocations).length > 0) {
-                const lines = Object.entries(data.datesLocations).map(
-                    ([location, dates]) => `${location}: ${dates.join(', ')}`
-                );
-                content.textContent = lines.join('\n');
+
+            const lines = [];
+
+            for (const location in data.datesLocations) {
+                const dates = data.datesLocations[location].join(", ");
+                lines.push(location + ": " + dates);
+            }
+
+            content.textContent = lines.join("\n");
+        })
+        .catch(error => console.error(error));
+
+    // dates
+    fetch("/dates/" + (Number(id) + 1))
+        .then(res => res.json())
+        .then(data => {
+            const content = document.getElementById("DatesPlace");
+            if (data.dates && data.dates.length) {
+                content.textContent = data.dates.join(", ");
             }
         })
-        .catch(err => console.error(err));
+        .catch(error => console.error(error));
 }
+
 
