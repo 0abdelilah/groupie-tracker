@@ -1,0 +1,52 @@
+<head>
+    <link rel="stylesheet" href="/templates/styles.css" />
+    <script src="/templates/script.js"></script>
+</head>
+
+<body>
+
+    <h1 style="padding-bottom: 10px; text-align: center; color: #50fa7b">Groupie-Tracker</h1>
+
+    <div class="container">
+
+        {{range $index, $artist := .Artists}}
+        <div class="artist">
+            <div>
+                <img src="{{$artist.Image}}" alt="{{$artist.Name}}"
+                    style="width: 200px; height: auto; border-radius: 10px;">
+            </div>
+
+            <div>
+                <p style="color: #50fa7b; font-size: 18px;">{{$artist.Name}}</p>
+                <p>Creation Date: {{$artist.CreationDate}}</p>
+                <p>First Album: {{$artist.FirstAlbum}}</p>
+
+                <!-- Locations Popup -->
+                <button
+                    onclick="showDialog('LocationsDialog{{$index}}'); displayLocations('{{$index}}')">Locations</button>
+                    <dialog id="LocationsDialog{{$index}}" style="padding: 20px;">
+                        
+                        <p id="LocationsPlace">Loading...</p>
+                    <button onclick="closeDialog('LocationsDialog{{$index}}')">Close</button>
+                </dialog>
+
+                <!-- Members Popup -->
+                <button onclick="showDialog('MembersDialog{{$index}}')">Members</button>
+                <dialog id="MembersDialog{{$index}}" style="padding: 20px;">
+                    <p>Members: {{$artist.Members}}</p>
+                    <button onclick="closeDialog('MembersDialog{{$index}}')">Close</button>
+                </dialog>
+
+                <!-- More info Popup -->
+                <button onclick="showDialog('MoreDialog{{$index}}'); displayMore('{{$index}}');">More info</button>
+                <dialog id="MoreDialog{{$index}}" style="padding: 20px;">
+                    <p id="RelationPlace">Loading...</p>
+                    <p id="DatesPlace">Loading...</p>
+                    <button onclick="closeDialog('MoreDialog{{$index}}')">Close</button>
+                </dialog>
+            </div>
+        </div>
+        {{end}}
+
+    </div>
+</body>

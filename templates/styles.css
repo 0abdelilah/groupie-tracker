@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #282A36;
+    margin: 20px;
+}
+
+.artist {
+    color: #F8F8F2;
+    padding: 10px;
+    display: flex;
+    gap: 20px;
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+.artist:hover {
+    background-color: #44475A;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    grid-gap: 10px;
+}
+
+button {
+    background-color: rgba(22, 24, 26, 0.719);
+    color: white;
+    border-radius: 5px;
+}
+
+button:hover {
+    border-radius: 20px;
+    background-color: #44475A;
+    color: #50fa7b;
+}
+
+#RelationPlace, #DatesPlace {
+    white-space: pre-wrap;
+}
