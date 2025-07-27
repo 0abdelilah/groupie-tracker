@@ -5,27 +5,39 @@
 
 <body>
 
-    <h1>Groupie-Tracker</h1>
-    
-    <div class="name-group">
-        <a href="https://github.com/0abdelilah" class="names" style="text-decoration: none;">Abelkhadir</a>
-        —
-        <a href="https://github.com/iallaoui" class="names" style="text-decoration: none;">Iallaoui</a>
+    <div class="top">
+        <h1>GROUPIE <span class="highlight">TRACKER</span></h1>
+
+        <div class="name-group">
+            <a href="https://github.com/0abdelilah" class="names" style="text-decoration: none;">Abelkhadir</a>
+            —
+            <a href="https://github.com/iallaoui" class="names" style="text-decoration: none;">Iallaoui</a>
+        </div>
     </div>
 
-    <div class="section">
+    <!-- Hills moved here -->
+    <div class="hills">
+        <svg viewBox="0 0 1440 150">
+            <path fill="#000" d="M0,100 C360,150 1080,50 1440,100 L1440,150 L0,150 Z"></path>
+        </svg>
+    </div>
+
+    <div class="bottom">
         <h2>Discover</h2>
 
         <div class="container">
             {{range $i, $artist := .Artists}}
             <div class="artist">
-                <div>
+                <div class="image-text-row">
                     <img src="{{$artist.Image}}" alt="{{$artist.Name}}">
+                    <div>
+                        <p style="font-size:medium; color: #f8f8f2; font-weight: bold;">{{$artist.Name}} - {{$artist.CreationDate}}</p>
+                    </b></b>
+                        <p>First Album:<div style="color: #645e75;"> {{$artist.FirstAlbum}}</div></p>
+                    </div>
                 </div>
-                <div>
-                    <p style="font-size:medium; color: #f8f8f2; font-weight: bold;">{{$artist.Name}}</p>
-                    <p>Creation Date: {{$artist.CreationDate}}</p>
-                    <p>First Album: {{$artist.FirstAlbum}}</p>
+
+                <div class="buttons">
 
                     <button onclick="showDialog('LocationsDialog{{$i}}'); displayLocations('{{$i}}')">Locations</button>
                     <dialog id="LocationsDialog{{$i}}">
@@ -51,6 +63,6 @@
             </div>
             {{end}}
         </div>
-        <h2></h2>
     </div>
+
 </body>
