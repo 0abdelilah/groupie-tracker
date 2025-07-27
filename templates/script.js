@@ -8,7 +8,8 @@ function displayLocations(id) {
     fetch('locations/' + (Number(id) + 1))
         .then(res => res.json())
         .then(data => {
-            const content = document.getElementById("LocationsPlace");
+            const content = document.getElementById("LocationsPlace" + id);
+            console.log(content, id);
             if (data.locations.length > 0) {
                 content.textContent = data.locations.join(', ');
             }
@@ -22,7 +23,7 @@ function displayMore(id) {
     fetch("/relation/" + (Number(id) + 1))
         .then(response => response.json())
         .then(data => {
-            const content = document.getElementById("RelationPlace");
+            const content = document.getElementById("RelationPlace" + id);
 
             const lines = [];
 
@@ -39,7 +40,7 @@ function displayMore(id) {
     fetch("/dates/" + (Number(id) + 1))
         .then(res => res.json())
         .then(data => {
-            const content = document.getElementById("DatesPlace");
+            const content = document.getElementById("DatesPlace" + id);
             if (data.dates && data.dates.length) {
                 content.textContent = data.dates.join(", ");
             }

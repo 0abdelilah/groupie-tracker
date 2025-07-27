@@ -1,2 +1,0 @@
-/artists -> show all artists
-/locations/{id} -> show location of a given artist
