@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🗺️ Project Map</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .map {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .project {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+    }
+
+    .project:hover {
+      transform: scale(1.03);
+    }
+
+    .emoji {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .title {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .desc {
+      color: #666;
+      font-size: 14px;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🗺️ My Project Map</h1>
+
+  <div class="map">
+    <div class="project">
+      <div class="emoji">🎨</div>
+      <div class="title">ascii-art</div>
+      <div class="desc">A simple CLI app to turn text into ASCII art.</div>
+    </div>
+
+    <div class="project">
+      <div class="emoji">🎶</div>
+      <div class="title">groupie-tracker</div>
+      <div class="desc">A simple web app to track music groups and members.</div>
+    </div>
+
+    <!-- Add more projects below -->
+    <!--
+    <div class="project">
+      <div class="emoji">🛠️</div>
+      <div class="title">project-name</div>
+      <div class="desc">Short description.</div>
+    </div>
+    -->
+  </div>
+</body>
+</html>
