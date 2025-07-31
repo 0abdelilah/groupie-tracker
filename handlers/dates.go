@@ -3,12 +3,11 @@ package handlers
 import (
 	"io"
 	"net/http"
-	"strings"
 )
 
+// request dates for an id and return it
 func DatesHandler(w http.ResponseWriter, r *http.Request) {
-
-	id := strings.TrimPrefix(r.URL.Path, "/dates/")
+	id := GetID(r, "dates")
 	if id == "" {
 		http.NotFound(w, r)
 		return
@@ -29,5 +28,4 @@ func DatesHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(body)
-
 }

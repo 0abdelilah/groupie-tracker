@@ -3,13 +3,15 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"groupie/handlers"
-	"groupie/models"
 	"log"
 	"net/http"
 	"os"
+
+	"groupie/handlers"
+	"groupie/models"
 )
 
+// move json from file to object
 func parseJson(jsonFile string) models.Artists {
 	var artists models.Artists
 
@@ -30,8 +32,11 @@ func parseJson(jsonFile string) models.Artists {
 	return artists
 }
 
-func main() {
+func NotFound(w http.ResponseWriter, r *http.Request) {
+	http.NotFound(w, r)
+}
 
+func main() {
 	// Get Artists data
 	handlers.Artists = parseJson("data/artists.json")
 
@@ -39,7 +44,8 @@ func main() {
 	mux := http.NewServeMux()
 
 	// handle routes
-	mux.HandleFunc("GET /", handlers.ArtistsHandler)
+	mux.HandleFunc("GET /", NotFound)
+	mux.HandleFunc("GET /artists/", handlers.ArtistsHandler)
 	mux.HandleFunc("GET /locations/{id}", handlers.LocationsHandler)
 	mux.HandleFunc("GET /relation/{id}", handlers.RelationHandler)
 	mux.HandleFunc("GET /dates/{id}", handlers.DatesHandler)

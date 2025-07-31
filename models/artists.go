@@ -11,10 +11,3 @@ type Artist struct {
 	Relations    string   `json:"relations"`
 }
 type Artists []Artist
-
-
-type Location struct {
-	Id        int
-	Locations []string
-}
-type Locations []Location

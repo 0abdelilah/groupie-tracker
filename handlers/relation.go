@@ -3,12 +3,11 @@ package handlers
 import (
 	"io"
 	"net/http"
-	"strings"
 )
 
+// fetch json ny id & return it
 func RelationHandler(w http.ResponseWriter, r *http.Request) {
-
-	id := strings.TrimPrefix(r.URL.Path, "/relation/")
+	id := GetID(r, "relation")
 	if id == "" {
 		http.NotFound(w, r)
 		return
@@ -29,5 +28,4 @@ func RelationHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(body)
-
 }

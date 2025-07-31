@@ -5,7 +5,7 @@ function closeDialog(id) {
     document.getElementById(id)?.close();
 }
 function displayLocations(id) {
-    fetch('locations/' + (Number(id) + 1))
+    fetch('/locations/' + (Number(id) + 1))
         .then(res => res.json())
         .then(data => {
             const content = document.getElementById("LocationsPlace" + id);

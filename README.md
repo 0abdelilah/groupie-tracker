@@ -10,4 +10,4 @@ API:
 
 todo:
 use local json instead of fetching
-handle 404
+remove js

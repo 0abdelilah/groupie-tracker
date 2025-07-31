@@ -3,11 +3,11 @@ package handlers
 import (
 	"io"
 	"net/http"
-	"strings"
 )
 
+// fetch locations & return it
 func LocationsHandler(w http.ResponseWriter, r *http.Request) {
-	id := strings.TrimPrefix(r.URL.Path, "/locations/")
+	id := GetID(r, "locations")
 	if id == "" {
 		http.NotFound(w, r)
 		return
