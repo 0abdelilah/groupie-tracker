@@ -1,9 +1,12 @@
 <head>
     <link rel="stylesheet" href="/templates/styles.css" />
+    <link rel="stylesheet" href="/templates/popup.css" />
     <script src="/templates/script.js"></script>
 </head>
 
 <body>
+
+    <!-- TOP -->
 
     <div class="top">
         <h1>GROUPIE <span class="highlight">TRACKER</span></h1>
@@ -15,13 +18,15 @@
         </div>
     </div>
 
-    <!-- Hills moved here -->
+    <!-- Hills -->
     <div class="hills">
         <svg viewBox="0 0 1440 150">
             <path fill="#000" d="M0,100 C360,150 1080,50 1440,100 L1440,150 L0,150 Z"></path>
         </svg>
     </div>
 
+
+    <!-- Bottom -->
     <div class="bottom">
         <h2>Discover</h2>
 
@@ -40,28 +45,48 @@
                     </div>
                 </div>
 
+
                 <div class="buttons">
 
-                    <button onclick="showDialog('LocationsDialog{{$i}}'); displayLocations('{{$i}}')">Locations</button>
-                    <dialog id="LocationsDialog{{$i}}">
-                        <p id="LocationsPlace{{$i}}">Loading...</p>
-                        <button onclick="closeDialog('LocationsDialog{{$i}}')">Close</button>
-                    </dialog>
+                    <!-- Locations popup -->
+                    <input type="checkbox" id="popup{{$i}}-locations"
+                        class="popup-toggle">
+                    <label for="popup{{$i}}-locations" class="button-like">Locations</label>
 
-                    <button onclick="showDialog('MembersDialog{{$i}}')">Members</button>
-                    <dialog id="MembersDialog{{$i}}">
-                        <p>Members: {{$artist.Members}}</p>
-                        <button onclick="closeDialog('MembersDialog{{$i}}')">Close</button>
-                    </dialog>
+                    <div class="popup-overlay">
+                        <div class="popup popup-locations">
+                            <p>{{$artist.Locations}}</p>
+                            <label for="popup{{$i}}-locations" class="button-like">Close</label>
+                        </div>
+                    </div>
 
-                    <button onclick="showDialog('MoreDialog{{$i}}'); displayMore('{{$i}}');">More info</button>
-                    <dialog id="MoreDialog{{$i}}">
-                        <p style="color: #50fa7b; font-size: 18px; font-weight: bold;">Relations:</p>
-                        <p id="RelationPlace{{$i}}">Loading...</p>
-                        <p style="color: #50fa7b; font-size: 18px; font-weight: bold;">Concert dates:</p>
-                        <p id="DatesPlace{{$i}}">Loading...</p>
-                        <button onclick="closeDialog('MoreDialog{{$i}}')">Close</button>
-                    </dialog>
+                    <!-- Members popup -->
+                    <input type="checkbox" id="popup{{$i}}-members" class="popup-toggle">
+                    <label for="popup{{$i}}-members" class="button-like">Members</label>
+
+                    <div class="popup-overlay">
+                        <div class="popup popup-members">
+                            <p>Members: {{$artist.Members}}</p>
+                            <label for="popup{{$i}}-members" class="button-like">Close</label>
+                        </div>
+                    </div>
+
+                    <!-- More info popup -->
+                    <input type="checkbox" id="popup{{$i}}-more" class="popup-toggle">
+                    <label for="popup{{$i}}-more" class="button-like">More info</label>
+
+                    <div class="popup-overlay">
+                        <div class="popup popup-more">
+
+                            <p style="color: #50fa7b; font-size: 18px; font-weight: bold;">Relations:</p>
+                            <p style="white-space: pre-wrap;">{{$artist.ConcertDates}}</p>
+
+                            <p style="color: #50fa7b; font-size: 18px; font-weight: bold;">Concert dates:</p>
+                            <p style="white-space: pre-wrap;">{{$artist.Relations}}</p>
+
+                            <label for="popup{{$i}}-more" class="button-like">Close</label>
+                        </div>
+                    </div>
                 </div>
             </div>
             {{end}}

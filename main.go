@@ -37,8 +37,12 @@ func NotFound(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	fmt.Println("Fetching json...")
 	// Get Artists data
 	handlers.Artists = parseJson("data/artists.json")
+	models.AddLocations(handlers.Artists)
+	models.AddConcertDates(handlers.Artists)
+	models.AddRelations(handlers.Artists)
 
 	// create an empty mux
 	mux := http.NewServeMux()
@@ -56,6 +60,6 @@ func main() {
 	})
 
 	// start server
-	fmt.Println("Starting server on http://localhost:8080/artists")
-	log.Panic(http.ListenAndServe(":8080", mux))
+	fmt.Println("Starting server on http://localhost:8081/artists")
+	log.Panic(http.ListenAndServe(":8081", mux))
 }
