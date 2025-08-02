@@ -3,8 +3,7 @@ package models
 import (
 	"encoding/json"
 	"fmt"
-	"io"
-	"net/http"
+	"os"
 	"strings"
 )
 
@@ -16,104 +15,97 @@ type Artist struct {
 	CreationDate int      `json:"creationDate"`
 	FirstAlbum   string   `json:"firstAlbum"`
 
-	LocationsPath string   `json:"locations"`
-	Locations     []string `json:"-"`
-
-	ConcertDatesPath string   `json:"concertDates"`
-	ConcertDates     []string `json:"-"`
-
-	RelationsPath string `json:"relations"`
-	Relations     string `json:"-"`
+	Locations    []string `json:"-"`
+	ConcertDates []string `json:"-"`
+	Relations    string   `json:"-"`
 }
 
 type Artists []Artist
 
-/*
-loop over each json
-fetch
-add locations to the struct
-*/
+func ParseJson() Artists {
+	// Read json
+	data, err := os.ReadFile("data/artists.json")
+	if err != nil {
+		fmt.Println("Failed to parse:", err)
+		return nil
+	}
+
+	var artists Artists
+
+	// Read and put to struct
+	err = json.Unmarshal(data, &artists)
+	if err != nil {
+		fmt.Println("Failed to parse:", err)
+		return nil
+	}
+
+	return artists
+}
+
 func AddLocations(artists Artists) {
-	for i, artist := range artists {
-		resp, err := http.Get(artist.LocationsPath)
-		if err != nil {
-			panic(err)
-		}
+	b, _ := os.ReadFile("data/locations.json")
 
-		var location struct {
-			Locations []string `json:"locations"`
-		}
+	type LocationEntry struct {
+		Locations []string `json:"locations"`
+	}
 
-		jsonData, err := io.ReadAll(resp.Body)
-		resp.Body.Close()
+	var data struct {
+		Index []LocationEntry `json:"index"`
+	}
 
-		if err != nil {
-			panic(err)
-		}
+	err := json.Unmarshal(b, &data)
+	if err != nil {
+		panic(err)
+	}
 
-		err = json.Unmarshal(jsonData, &location)
-		if err != nil {
-			panic(err)
-		}
-
-		artists[i].Locations = location.Locations
+	for i := range artists {
+		artists[i].Locations = data.Index[i].Locations
 	}
 }
 
 func AddConcertDates(artists Artists) {
-	for i, artist := range artists {
-		resp, err := http.Get(artist.ConcertDatesPath)
-		if err != nil {
-			panic(err)
-		}
+	b, _ := os.ReadFile("data/dates.json")
 
-		var ConcertDates struct {
-			Dates []string `json:"dates"`
-		}
+	type DatesEntry struct {
+		Dates []string `json:"dates"`
+	}
 
-		jsonData, err := io.ReadAll(resp.Body)
-		resp.Body.Close()
-		if err != nil {
-			panic(err)
-		}
+	var data struct {
+		Index []DatesEntry `json:"index"`
+	}
 
-		err = json.Unmarshal(jsonData, &ConcertDates)
-		if err != nil {
-			panic(err)
-		}
+	err := json.Unmarshal(b, &data)
+	if err != nil {
+		panic(err)
+	}
 
-		artists[i].ConcertDates = ConcertDates.Dates
+	for i := range artists {
+		artists[i].ConcertDates = data.Index[i].Dates
 	}
 }
 
 func AddRelations(artists Artists) {
-	for i, artist := range artists {
-		resp, err := http.Get(artist.RelationsPath)
-		if err != nil {
-			panic(err)
-		}
+	b, _ := os.ReadFile("data/relation.json")
 
-		jsonData, err := io.ReadAll(resp.Body)
-		resp.Body.Close()
-		if err != nil {
-			panic(err)
-		}
+	type RelationsEntry struct {
+		DatesLocations map[string][]string `json:"datesLocations"`
+	}
 
-		var relations struct {
-			DatesLocations map[string][]string `json:"datesLocations"`
-		}
+	var data struct {
+		Index []RelationsEntry `json:"index"`
+	}
 
-		err = json.Unmarshal(jsonData, &relations)
-		if err != nil {
-			panic(err)
-		}
+	err := json.Unmarshal(b, &data)
+	if err != nil {
+		panic(err)
+	}
 
+	for i := range artists {
 		var sb strings.Builder
-		for city, dates := range relations.DatesLocations {
+		for city, dates := range data.Index[0].DatesLocations {
 			d := strings.Join(dates, ", ")
 			fmt.Fprintf(&sb, "%s => %s\n", city, d)
 		}
-
 		artists[i].Relations = sb.String()
 	}
 }

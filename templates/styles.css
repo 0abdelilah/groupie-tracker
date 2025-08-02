@@ -5,11 +5,13 @@ body {
 }
 
 .top {
-    background: linear-gradient(#1a132c, #2e244de0);
+    background: linear-gradient(to bottom, hsl(250, 24%, 12%), hsl(250, 24%, 30%));
 }
 
-.hills {
-    background: linear-gradient(#2e244de0, rgba(0, 0, 0, 0.878));
+.bottom {
+    background-color: #0d0d11;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 h1,
@@ -58,26 +60,22 @@ h1 {
     padding: 0 4px;
 }
 
-.bottom {
-    background-color: #000;
-    padding-left: 5%;
-    padding-right: 5%;
-}
-
 h2 {
+    background-color: #0d0d11;
     margin: 0;
-    padding-left: 1rem;
+    padding-left: 7%;
     padding-bottom: 1rem;
     padding-top: 1rem;
     color: #f8f8f2;
 }
 
 .container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  max-width: 1500px; /* 4 * 300px */
-  margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1500px;
+    /* 4 * 300px */
+    margin: auto;
 }
 
 .artist {
@@ -122,9 +120,4 @@ img {
 p {
     color: #e8e8e8;
     margin: 5px 0;
-}
-
-#RelationPlace,
-#DatesPlace {
-    white-space: pre-wrap;
 }

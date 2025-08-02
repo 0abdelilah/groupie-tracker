@@ -17,3 +17,11 @@ func GetID(r *http.Request, path string) string {
 
 	return strconv.Itoa(n)
 }
+
+func NotFound(w http.ResponseWriter, r *http.Request) {
+	http.NotFound(w, r)
+}
+
+func ServeStatic(w http.ResponseWriter, r *http.Request) {
+	http.StripPrefix("/templates/", http.FileServer(http.Dir("templates"))).ServeHTTP(w, r)
+}
