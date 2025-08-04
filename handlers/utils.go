@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"html/template"
 	"net/http"
 	"strconv"
 	"strings"
@@ -19,7 +20,8 @@ func GetID(r *http.Request, path string) string {
 }
 
 func NotFound(w http.ResponseWriter, r *http.Request) {
-	http.NotFound(w, r)
+	tmp, _ := template.ParseFiles("templates/error.html")
+	tmp.Execute(w, nil)
 }
 
 func ServeStatic(w http.ResponseWriter, r *http.Request) {

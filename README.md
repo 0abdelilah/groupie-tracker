@@ -1,5 +1,5 @@
 RUN:
-- go run . 
+- go run .
 
 API:
 - /artists -> show all artists
