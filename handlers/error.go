@@ -3,7 +3,6 @@ package handlers
 import (
 	"html/template"
 	"net/http"
-	"os"
 	"strconv"
 )
 
@@ -25,13 +24,4 @@ func ErrorHandler(w http.ResponseWriter, text string, code int) {
 
 	w.WriteHeader(code)
 	tmpl.Execute(w, data)
-}
-
-func ServeStatic(w http.ResponseWriter, r *http.Request) {
-	bytes, err := os.ReadFile("." + r.URL.Path)
-	if err != nil {
-		ErrorHandler(w, "Not found", 404)
-	}
-
-	w.Write(bytes)
 }

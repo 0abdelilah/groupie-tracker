@@ -80,8 +80,9 @@ h2 {
 }
 
 .artist {
-    max-width: 90%;
-    min-width: 100%;
+    width: 100%;
+    max-width: 360px; /* or any reasonable max */
+    margin: auto; 
     padding: 5px;
     margin-bottom: 1em;
     gap: 20px;

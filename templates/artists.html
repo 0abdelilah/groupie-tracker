@@ -1,6 +1,7 @@
 <head>
     <link rel="stylesheet" href="/templates/styles.css" />
     <link rel="stylesheet" href="/templates/popup.css" />
+    <link rel="stylesheet" href="/templates/search.css" />
 </head>
 
 <body>
@@ -29,8 +30,20 @@
 
     <!-- Bottom -->
     <div class="bottom">
-        <h2>Discover</h2>
 
+        <div class="discover">
+            <h2>Discover</h2>
+            <form action="/search" method="post" class="search-form">
+                <input type="text" name="q" placeholder="Search..." class="search-input" />
+                <button type="submit" class="search-button">
+                    <svg viewBox="0 0 24 24" width="20" height="20">
+                        <path fill="#888"
+                        d="M9.5 3a6.5 6.5 0 015.2 10.3l5 5a1 1 0 01-1.4 1.4l-5-5A6.5 6.5 0 119.5 3zm0 2a4.5 4.5 0 100 9 4.5 4.5 0 000-9z" />
+                    </svg>
+                </button>
+            </form>
+        </div>
+            
         <div class="container">
             {{range $i, $artist := .Artists}}
             <div class="artist">

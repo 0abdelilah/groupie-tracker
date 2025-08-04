@@ -23,6 +23,7 @@ func main() {
 	mux.HandleFunc("GET /", handlers.NotFound)
 	mux.HandleFunc("GET /artists/", handlers.ArtistsHandler)
 	mux.HandleFunc("GET /templates/", handlers.ServeStatic)
+	mux.HandleFunc("POST /search", handlers.SearchHandler)
 
 	// start server
 	fmt.Println("Starting server on http://localhost:8081/artists")
