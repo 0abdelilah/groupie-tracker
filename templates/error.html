@@ -1,10 +1,15 @@
 <head>
-    <link rel="stylesheet" href="/templates/styles.css" />
+    <title>Error</title>
+    <link rel="stylesheet" href="/templates/styles.css">
 </head>
 
 <body>
-
-    <div class="bottom">
-        azekkjf
-    </div>
+    <section class="errorSection">
+      
+        <h1 class="statusCode">{{.status}}</h1>
+        <h1 class="errorText">{{.errorText}}</h1>
+        <button class="submit-button" onclick="window.location.href='/'">Go to Homepage</button>
+    </section>
 </body>
+
+</html>

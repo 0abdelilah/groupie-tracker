@@ -13,7 +13,7 @@ var Artists models.Artists
 // serve artists.html with artists as struct
 func ArtistsHandler(w http.ResponseWriter, r *http.Request) {
 	if strings.TrimPrefix(r.URL.Path, "/artists/") != "" {
-		http.NotFound(w, r)
+		ErrorHandler(w, "Not found", 404)
 		return
 	}
 
