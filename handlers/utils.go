@@ -5,20 +5,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
-	"strings"
 )
-
-// validate id & return it
-func GetID(r *http.Request, path string) string {
-	id := strings.TrimPrefix(r.URL.Path, "/"+path+"/")
-	n, err := strconv.Atoi(id)
-
-	if err != nil || id == "" || (n < 1 || n > 52) {
-		return ""
-	}
-
-	return strconv.Itoa(n)
-}
 
 func NotFound(w http.ResponseWriter, r *http.Request) {
 	ErrorHandler(w, "Not Found", 404)
