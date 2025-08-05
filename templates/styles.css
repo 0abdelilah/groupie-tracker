@@ -120,6 +120,7 @@ img {
 }
 
 p {
+    text-wrap: pre;
     color: #e8e8e8;
     margin: 5px 0;
 }

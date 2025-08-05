@@ -13,7 +13,7 @@ func main() {
 	// Get Artists data
 	handlers.Artists = models.ParseJson()
 	models.AddLocations(handlers.Artists)
-	models.AddConcertDates(handlers.Artists)
+	models.AddDates(handlers.Artists)
 	models.AddRelations(handlers.Artists)
 
 	// create an empty mux

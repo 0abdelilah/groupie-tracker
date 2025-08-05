@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
-	"strconv"
 	"strings"
 
 	"groupie/models"
@@ -51,28 +50,6 @@ func Search(w http.ResponseWriter, artists models.Artists, keyword string) model
 				result = append(result, artist)
 			}
 		}
-
-		// Search Creation dates
-		strCrDate := strconv.Itoa(artist.CreationDate)
-		if strings.Contains(strCrDate, keyword) {
-			fmt.Printf("Found %s in Creation dates\n", keyword)
-			result = append(result, artist)
-		}
-
-		// Search Locations
-		for _, location := range artist.Locations {
-			if strings.Contains(strings.ToLower(location), keyword) {
-				fmt.Printf("Found %s in Locations\n", keyword)
-				result = append(result, artist)
-			}
-		}
-
-		// Search FirstAlbum
-		if strings.Contains(strings.ToLower(artist.FirstAlbum), keyword) {
-			fmt.Printf("Found %s in First album\n", keyword)
-			result = append(result, artist)
-		}
 	}
-
 	return result
 }
