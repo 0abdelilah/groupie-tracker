@@ -1,11 +1,11 @@
 <head>
+    <title>Artists</title>
     <link rel="stylesheet" href="/templates/styles.css" />
     <link rel="stylesheet" href="/templates/popup.css" />
     <link rel="stylesheet" href="/templates/search.css" />
 </head>
 
 <body>
-
     <!-- TOP -->
     <div class="top">
         <h1>GROUPIE <span class="highlight">TRACKER</span></h1>
@@ -25,30 +25,25 @@
                 d="M199 383.86L117.5 391.279L0 396H2159L2070 385.209L2030.5 382.287L1956 378.915L1912 371.271L1870 368.798L1814.5 367C1786 369.698 1690.5 356 1684.5 356C1680.9 356 1661.33 369.698 1632 367L1555 368.798L1491 360L1459 363.5L1453.5 367L1430.5 371.271H1411.5L1312 375.093H1165.5L1059.5 371.271L952.5 367L878 371.271C850.833 372.545 794.6 375.093 787 375.093C779.4 375.093 693.833 369.698 652 367H591L513 375.093H310L275 380.488L199 383.86Z"
                 fill="#0D0D11" />
         </svg>
-
     </div>
 
     <!-- Bottom -->
     <div class="bottom">
-
-        <div class="discover">
-            <h2>Discover</h2>
-            <form action="/search" method="post" class="search-form">
-                <input type="text" name="q" placeholder="Search..." class="search-input" />
-                <button type="submit" class="search-button">
-                    <svg viewBox="0 0 24 24" width="20" height="20">
-                        <path fill="#888"
+        <form action="/search" method="post" class="search-form">
+            <input type="text" name="q" placeholder="Search..." class="search-input" />
+            <button type="submit" class="search-button">
+                <svg viewBox="0 0 24 24" width="20" height="20">
+                    <path fill="#888"
                         d="M9.5 3a6.5 6.5 0 015.2 10.3l5 5a1 1 0 01-1.4 1.4l-5-5A6.5 6.5 0 119.5 3zm0 2a4.5 4.5 0 100 9 4.5 4.5 0 000-9z" />
-                    </svg>
-                </button>
-            </form>
-        </div>
-            
+                </svg>
+            </button>
+        </form>
         <div class="container">
             {{range $i, $artist := .Artists}}
             <div class="artist">
                 <div class="image-text-row">
                     <img src="{{$artist.Image}}" alt="{{$artist.Name}}">
+
                     <div>
                         <p style="font-size:medium; color: #f8f8f2; font-weight: bold;">{{$artist.Name}} -
                             {{$artist.CreationDate}}</p>
@@ -94,7 +89,7 @@
                         <div class="popup popup-more">
                             <p style="color: #50fa7b; font-size: 18px; font-weight: bold;">Relations:</p>
                             <p style="white-space: pre-wrap;">{{$artist.Relations}}</p>
-                            
+
                             <p style="color: #50fa7b; font-size: 18px; font-weight: bold;">Dates:</p>
                             <p style="white-space: pre-wrap;">{{$artist.Dates}}</p>
 
@@ -103,6 +98,7 @@
                     </div>
                 </div>
             </div>
+
             {{end}}
         </div>
     </div>

@@ -7,7 +7,7 @@ import (
 )
 
 func NotFound(w http.ResponseWriter, r *http.Request) {
-	ErrorHandler(w, "Not Found", 404)
+	ErrorHandler(w, "This page does not exist.", 404)
 }
 
 func ErrorHandler(w http.ResponseWriter, text string, code int) {

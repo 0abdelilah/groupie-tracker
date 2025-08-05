@@ -8,7 +8,7 @@ import (
 func ServeStatic(w http.ResponseWriter, r *http.Request) {
 	bytes, err := os.ReadFile("." + r.URL.Path)
 	if err != nil {
-		ErrorHandler(w, "Not found", 404)
+		ErrorHandler(w, "This page does not exist.", 404)
 	}
 
 	w.Write(bytes)

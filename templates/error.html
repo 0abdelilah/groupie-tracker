@@ -4,16 +4,46 @@
     <link rel="stylesheet" href="/templates/popup.css" />
 </head>
 
-<body>
-    <div style="display: flex; flex-direction: column; align-items: center;" class="top">
-        <h1>{{.status}}</h1>
-        <div style="display:flex; justify-content: center;justify-items: center;">
-            <img src="https://draculatheme.com/icons/used/pack-1/046-zombie.svg">
-        </div>
-        <h1>{{.errorText}}</h1>
+<style>
+    .img-zombie {
+        height: 200px;
+        width: auto;
+        display: flex;
+        justify-content: center;
+        justify-items: center;
+    }
 
-        <div style="display:flex; justify-content: center;justify-items: center;">
-            <button class="button-like" onclick="window.location.href='/artists/'">Go to Homepage</button>
+    .btn-home {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+</style>
+
+<body>
+    <div class="top">
+        <h1 style="
+  font-size: min(10vw, 90px); 
+  color: #ff5555; 
+  width: fit-content; 
+  margin: 0 auto;
+">
+        </h1>
+        <div class="img-zombie">
+            <img src="https://draculatheme.com/icons/used/pack-6/048-grave.svg">
+        </div>
+
+        <h1 style="
+  font-size: min(10vw, 40px); 
+  color: #f8f8f2; 
+  width: fit-content; 
+  margin: 0 auto;
+  margin-bottom: 20px;
+">{{.errorText}}</h1>
+
+        <div class="btn-home">
+            <button style="font-size: large;" class="button-like" onclick="window.location.href='/artists/'">Go to
+                Homepage</button>
         </div>
         <svg viewBox="0 0 2159 390" preserveAspectRatio="none">
             <path

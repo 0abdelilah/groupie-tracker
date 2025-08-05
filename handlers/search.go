@@ -24,6 +24,11 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if len(keyword) == 0 {
+		tmpl.Execute(w, nil)
+		return
+	}
+
 	data := TemplateData{
 		Artists: matchingArtists,
 	}
@@ -42,14 +47,7 @@ func Search(w http.ResponseWriter, artists models.Artists, keyword string) model
 			fmt.Printf("Found %s in Names\n", keyword)
 			result = append(result, artist)
 		}
-
-		// Search Members
-		for _, member := range artist.Members {
-			if strings.Contains(strings.ToLower(member), keyword) {
-				fmt.Printf("Found %s in Members\n", keyword)
-				result = append(result, artist)
-			}
-		}
 	}
+
 	return result
 }
