@@ -22,7 +22,6 @@ func main() {
 	// handle routes
 	mux.HandleFunc("GET /", handlers.ArtistsHandler)
 	mux.HandleFunc("GET /templates/", handlers.ServeStatic)
-	mux.HandleFunc("POST /search", handlers.SearchHandler)
 
 	// start server
 	fmt.Println("Starting server on http://localhost:8081/")
