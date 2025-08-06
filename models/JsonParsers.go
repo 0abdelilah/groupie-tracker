@@ -2,8 +2,8 @@ package models
 
 import (
 	"encoding/json"
-	"fmt"
-	"os"
+	"io"
+	"net/http"
 	"strings"
 )
 
@@ -25,20 +25,22 @@ type Artist struct {
 type Artists []Artist
 
 func ParseJson() Artists {
-	// Read json
-	data, err := os.ReadFile("data/artists.json")
+	resp, err := http.Get("https://groupietrackers.herokuapp.com/api/artists")
 	if err != nil {
-		fmt.Println("Failed to parse:", err)
-		return nil
+		panic(err)
+	}
+
+	b, err := io.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
 	}
 
 	var artists Artists
 
 	// Read and put to struct
-	err = json.Unmarshal(data, &artists)
+	err = json.Unmarshal(b, &artists)
 	if err != nil {
-		fmt.Println("Failed to parse:", err)
-		return nil
+		panic(err)
 	}
 
 	for i := range artists {
@@ -49,7 +51,15 @@ func ParseJson() Artists {
 }
 
 func AddLocations(artists Artists) {
-	b, _ := os.ReadFile("data/locations.json")
+	resp, err := http.Get("https://groupietrackers.herokuapp.com/api/locations")
+	if err != nil {
+		panic(err)
+	}
+
+	b, err := io.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
 
 	type LocationEntry struct {
 		Locations []string `json:"locations"`
@@ -59,7 +69,7 @@ func AddLocations(artists Artists) {
 		Index []LocationEntry `json:"index"`
 	}
 
-	err := json.Unmarshal(b, &data)
+	err = json.Unmarshal(b, &data)
 	if err != nil {
 		panic(err)
 	}
@@ -71,7 +81,15 @@ func AddLocations(artists Artists) {
 }
 
 func AddRelations(artists Artists) {
-	b, _ := os.ReadFile("data/relation.json")
+	resp, err := http.Get("https://groupietrackers.herokuapp.com/api/relation")
+	if err != nil {
+		panic(err)
+	}
+
+	b, err := io.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
 
 	type RelationsEntry struct {
 		DatesLocations map[string][]string `json:"datesLocations"`
@@ -81,7 +99,7 @@ func AddRelations(artists Artists) {
 		Index []RelationsEntry `json:"index"`
 	}
 
-	err := json.Unmarshal(b, &data)
+	err = json.Unmarshal(b, &data)
 	if err != nil {
 		panic(err)
 	}
@@ -97,7 +115,15 @@ func AddRelations(artists Artists) {
 }
 
 func AddDates(artists Artists) {
-	b, _ := os.ReadFile("data/dates.json")
+	resp, err := http.Get("https://groupietrackers.herokuapp.com/api/dates")
+	if err != nil {
+		panic(err)
+	}
+
+	b, err := io.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
 
 	type DatesEntry struct {
 		Dates []string `json:"dates"`
@@ -107,7 +133,7 @@ func AddDates(artists Artists) {
 		Index []DatesEntry `json:"index"`
 	}
 
-	err := json.Unmarshal(b, &data)
+	err = json.Unmarshal(b, &data)
 	if err != nil {
 		panic(err)
 	}
