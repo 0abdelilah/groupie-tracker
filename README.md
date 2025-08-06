@@ -3,3 +3,5 @@ RUN:
 
 API:
 - / -> show all artists
+
+Authors: abelkhadir, fhosaily
