@@ -20,12 +20,11 @@ func main() {
 	mux := http.NewServeMux()
 
 	// handle routes
-	mux.HandleFunc("GET /", handlers.NotFound)
-	mux.HandleFunc("GET /artists/", handlers.ArtistsHandler)
+	mux.HandleFunc("GET /", handlers.ArtistsHandler)
 	mux.HandleFunc("GET /templates/", handlers.ServeStatic)
 	mux.HandleFunc("POST /search", handlers.SearchHandler)
 
 	// start server
-	fmt.Println("Starting server on http://localhost:8081/artists")
+	fmt.Println("Starting server on http://localhost:8081/")
 	log.Panic(http.ListenAndServe(":8081", mux))
 }

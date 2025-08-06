@@ -81,7 +81,7 @@ h2 {
 
 .artist {
     width: 100%;
-    max-width: 360px; /* or any reasonable max */
+    max-width: 360px;
     margin: auto; 
     padding: 5px;
     margin-bottom: 1em;
@@ -123,4 +123,18 @@ p {
     text-wrap: pre;
     color: #e8e8e8;
     margin: 5px 0;
+}
+
+.img-zombie {
+    height: 200px;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+
+.btn-home {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }

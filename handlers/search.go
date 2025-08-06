@@ -39,11 +39,9 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 func Search(w http.ResponseWriter, artists models.Artists, keyword string) models.Artists {
 	var result models.Artists
 
-	keyword = strings.ToLower(keyword)
-
 	for _, artist := range artists {
 		// Search Names
-		if strings.Contains(strings.ToLower(artist.Name), keyword) {
+		if strings.Contains(strings.ToLower(artist.Name), strings.ToLower(keyword)) {
 			fmt.Printf("Found %s in Names\n", keyword)
 			result = append(result, artist)
 		}

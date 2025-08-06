@@ -29,6 +29,8 @@
 
     <!-- Bottom -->
     <div class="bottom">
+
+        <!-- Search -->
         <form action="/search" method="post" class="search-form">
             <input type="text" name="q" placeholder="Search..." class="search-input" />
             <button type="submit" class="search-button">
@@ -38,6 +40,7 @@
                 </svg>
             </button>
         </form>
+
         <div class="container">
             {{range $i, $artist := .Artists}}
             <div class="artist">
@@ -47,13 +50,11 @@
                     <div>
                         <p style="font-size:medium; color: #f8f8f2; font-weight: bold;">{{$artist.Name}} -
                             {{$artist.CreationDate}}</p>
-                        </b></b>
                         <p>First Album:
                         <div style="color: #645e75;"> {{$artist.FirstAlbum}}</div>
                         </p>
                     </div>
                 </div>
-
 
                 <div class="buttons">
 
@@ -62,7 +63,7 @@
                     <label for="popup{{$i}}-locations" class="button-like">Locations</label>
 
                     <div class="popup-overlay">
-                        <div class="popup popup-locations">
+                        <div class="popup">
                             <p style="color: #50fa7b; font-size: 18px; font-weight: bold;">Locations: </p>
                             <p>{{$artist.Locations}}</p>
                             <label for="popup{{$i}}-locations" class="button-like">Close</label>
@@ -74,7 +75,7 @@
                     <label for="popup{{$i}}-members" class="button-like">Members</label>
 
                     <div class="popup-overlay">
-                        <div class="popup popup-members">
+                        <div class="popup">
                             <p style="color: #50fa7b; font-size: 18px; font-weight: bold;">Members:</p>
                             <p>{{$artist.JoinedMembers}}</p>
                             <label for="popup{{$i}}-members" class="button-like">Close</label>
@@ -86,7 +87,7 @@
                     <label for="popup{{$i}}-more" class="button-like">More info</label>
 
                     <div class="popup-overlay">
-                        <div class="popup popup-more">
+                        <div class="popup">
                             <p style="color: #50fa7b; font-size: 18px; font-weight: bold;">Relations:</p>
                             <p style="white-space: pre-wrap;">{{$artist.Relations}}</p>
 
@@ -98,7 +99,6 @@
                     </div>
                 </div>
             </div>
-
             {{end}}
         </div>
     </div>

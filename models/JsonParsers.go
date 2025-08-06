@@ -87,12 +87,12 @@ func AddRelations(artists Artists) {
 	}
 
 	for i := range artists {
-		var sb strings.Builder
+		var s string
 		for city, dates := range data.Index[i].DatesLocations {
 			d := strings.Join(dates, ", ")
-			fmt.Fprintf(&sb, "%s => %s\n", city, d)
+			s += city + ": " + d + "\n\n"
 		}
-		artists[i].Relations = sb.String()
+		artists[i].Relations = s
 	}
 }
 

@@ -2,4 +2,4 @@ RUN:
 - go run .
 
 API:
-- /artists -> show all artists
+- / -> show all artists
