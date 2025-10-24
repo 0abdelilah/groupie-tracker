@@ -24,6 +24,7 @@ type Artist struct {
 
 type Artists []Artist
 
+// ParseJson fetches artist data from the API and parses it into an Artists slice.
 func ParseJson() Artists {
 	resp, err := http.Get("https://groupietrackers.herokuapp.com/api/artists")
 	if err != nil {
@@ -50,6 +51,7 @@ func ParseJson() Artists {
 	return artists
 }
 
+// AddLocations fetches and adds location data to each artist.
 func AddLocations(artists Artists) {
 	resp, err := http.Get("https://groupietrackers.herokuapp.com/api/locations")
 	if err != nil {
@@ -80,6 +82,7 @@ func AddLocations(artists Artists) {
 	}
 }
 
+// AddRelations fetches and adds the relation data (dates per city) to each artist.
 func AddRelations(artists Artists) {
 	resp, err := http.Get("https://groupietrackers.herokuapp.com/api/relation")
 	if err != nil {
@@ -114,6 +117,7 @@ func AddRelations(artists Artists) {
 	}
 }
 
+// AddDates fetches and adds tour dates to each artist.
 func AddDates(artists Artists) {
 	resp, err := http.Get("https://groupietrackers.herokuapp.com/api/dates")
 	if err != nil {

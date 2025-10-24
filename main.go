@@ -10,9 +10,8 @@ import (
 )
 
 // todo:
-// add details to a seperate page
+// make popups look better
 // add shortcuts
-
 
 func main() {
 	// Get Artists data
